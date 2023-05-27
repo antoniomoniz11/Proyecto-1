@@ -14,7 +14,7 @@ public class Nodo<E>
     private E valor;
     private Nodo pnext;
     
-    public Nodo(E valor, Nodo sig){
+    public Nodo(E valor, Nodo pnext){
         this.valor = valor;
         this.pnext = pnext;
     }
