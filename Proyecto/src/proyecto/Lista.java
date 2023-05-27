@@ -9,26 +9,27 @@ package proyecto;
  *
  * @author Antonio
  */
-public class Lista<E>{
-    private Nodo<E> pFirst;
-    private Nodo<E> pLast;
+public class Lista<E>
+{
+    private Nodo<E> pfirst;
+    private Nodo<E> plast;
     private int size;
     
     public void insertarInicio(E x){
         size++;
-        if(pFirst != null){
-            pFirst = new Nodo(x, pFirst);
+        if(pfirst != null){
+            pfirst = new Nodo(x, pfirst);
         }
-        else pLast = pFirst = new Nodo(x, null);
+        else plast = pfirst = new Nodo(x, null);
     }
     
     public void insertarFinal(E x){
         size++;
-        if(pLast != null) {
-            pLast.setPnext(new Nodo(x, null));
-            pLast = pLast.getPnext();
+        if(plast != null) {
+            plast.setPnext(new Nodo(x, null));
+            plast = plast.getPnext();
         }
-        else pLast = pFirst = new Nodo(x, null);
+        else plast = pfirst = new Nodo(x, null);
     }
     
     public int size(){
@@ -36,7 +37,8 @@ public class Lista<E>{
     }
     
     public boolean contains(E e){
-        Nodo actual = pFirst;
+        Nodo actual = pfirst;
+        int i = 0;
         while(actual != null){
             if(actual.getElement().equals(e)) return true;
             actual = actual.getPnext();
@@ -46,7 +48,7 @@ public class Lista<E>{
     
     public String toString(){
         String res = "";
-        Nodo actual = pFirst;
+        Nodo actual = pfirst;
         while(actual != null){
             if(actual.getPnext() != null) res += actual.getElement() + "-> ";
             else res += actual.getElement();
@@ -59,42 +61,17 @@ public class Lista<E>{
         System.out.println(toString());
     }
     
-    public Nodo getPfirst() {return pFirst;}
+    public Nodo getPfirst() {return pfirst;}
     
-    public void eliminar(Nodo<E> nodo) {
-        if (pFirst == null) {
-            return; //
-        }
-
-        if (nodo == pFirst) {
-            pFirst = pFirst.getPnext();
-
-            if (pFirst == null) {
-                pLast = null; //
-            }
-
-            size--;
-            return;
-        }
-
-        Nodo<E> current = pFirst;
-        Nodo<E> previous = null;
-
-        while (current != null && current != nodo) {
-            previous = current;
-            current = current.getPnext();
-        }
-
-        if (current == null) {
-            return; // 
-        }
-
-        previous.setPnext(current.getPnext());
-
-        if (current == pLast) {
-            pLast = previous; 
-        }
-
+    public void eliminar(Nodo<E> nodo){
         size--;
+        Nodo<E> actual = pfirst;
+        if(size == 1) {pfirst = plast = null; return;}
+        if(nodo.equals(actual)) {pfirst = plast.getPnext(); return;}
+        while(!actual.getPnext().equals(nodo)) actual = actual.getPnext();
+        if(nodo.equals(plast)) plast = actual; 
+        actual.setPnext(nodo.getPnext());
     }
+    
+   
 }
