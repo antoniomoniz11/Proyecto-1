@@ -13,21 +13,12 @@ public class Usuario
 {
     private int id;
     private String nickname;
-    private int[] amigos;
     
     public Usuario(int id, String nickname){
         this.id = id;
         this.nickname = nickname;
-        this.amigos = new int[0];
     }
     
     public int getId() {return id;}
     public String getNickname() {return nickname;}    
-    
-    public void agregarAmigo(int idAmigo) {
-        int[] nuevosAmigos = new int[amigos.length + 1];
-        System.arraycopy(amigos, 0, nuevosAmigos, 0, amigos.length);
-        nuevosAmigos[amigos.length] = idAmigo;
-        amigos = nuevosAmigos;
-    }
 }
