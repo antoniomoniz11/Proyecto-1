@@ -5,11 +5,7 @@
  */
 package proyecto;
 import static interfa.Ventanas.Ventana1.guardado_automatico;
-import java.io.File;
 import java.util.Iterator;
-import java.util.Scanner;
-import javax.swing.JOptionPane;
-import javax.swing.SpringLayout;
     import org.graphstream.graph.*;
     import org.graphstream.graph.implementations.*;
 import org.graphstream.ui.view.Viewer;
@@ -17,7 +13,6 @@ import static proyecto.Proyecto.extraerGrafo;
 import static proyecto.Proyecto.guardarGrafo;
 import static proyecto.Proyecto.miGrafo;
 import org.graphstream.graph.Graph;
-import org.graphstream.graph.implementations.AbstractGraph;
 
 /**
  *

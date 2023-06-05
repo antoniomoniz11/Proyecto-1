@@ -9,11 +9,13 @@ import java.io.File;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import proyecto.Cola;
 import proyecto.Grafo;
 import proyecto.Proyecto;
 import static proyecto.Proyecto.extraerGrafo;
 import static proyecto.Proyecto.guardarGrafo;
 import static proyecto.Proyecto.miGrafo;
+import static proyecto.Proyecto.mostrarisla;
 import proyecto.interGrafo;
 
 /**
@@ -21,6 +23,7 @@ import proyecto.interGrafo;
  * @author donat
  */
 public class Ventana1 extends javax.swing.JFrame {
+    //Creamos variables globales
     public static int pasodialogo;
     public static int aparicion;
     public static File guardado_automatico = new File("src\\Archivos\\guardado_automatico.txt");
@@ -40,6 +43,7 @@ public class Ventana1 extends javax.swing.JFrame {
         initComponents();
         
         nextdialogo.setVisible(true);
+        //Hace visibles las opciones
         int aparicion=+ 1;
         if (aparicion<2) {
             this.AgregarDoc.setVisible(sino);
@@ -49,6 +53,8 @@ public class Ventana1 extends javax.swing.JFrame {
             this.agregarUsuario1.setVisible(sino);
             this.ListasPuentes.setVisible(sino);
             this.guardar.setVisible(sino);
+            this.cambioislas.setVisible(sino);
+            this.numeroislas.setVisible(sino);
         }
         
     }
@@ -74,6 +80,8 @@ public class Ventana1 extends javax.swing.JFrame {
         ListasPuentes = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         guardar = new javax.swing.JButton();
+        numeroislas = new javax.swing.JLabel();
+        cambioislas = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -113,6 +121,7 @@ public class Ventana1 extends javax.swing.JFrame {
         VerGrafo.setBackground(new java.awt.Color(255, 51, 204));
         VerGrafo.setForeground(new java.awt.Color(255, 51, 204));
         VerGrafo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/abrir grafopeq.png"))); // NOI18N
+        VerGrafo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         VerGrafo.setFocusable(false);
         VerGrafo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -147,6 +156,7 @@ public class Ventana1 extends javax.swing.JFrame {
 
         agregarAmigo.setBackground(new java.awt.Color(0, 255, 204));
         agregarAmigo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/amigos.png"))); // NOI18N
+        agregarAmigo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         agregarAmigo.setFocusable(false);
         agregarAmigo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -157,6 +167,7 @@ public class Ventana1 extends javax.swing.JFrame {
 
         agregarUsuario1.setBackground(new java.awt.Color(255, 255, 0));
         agregarUsuario1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/usuariobien.png"))); // NOI18N
+        agregarUsuario1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         agregarUsuario1.setFocusable(false);
         agregarUsuario1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -168,6 +179,7 @@ public class Ventana1 extends javax.swing.JFrame {
         AgregarDoc.setBackground(new java.awt.Color(153, 153, 255));
         AgregarDoc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/carpeta8bit.png"))); // NOI18N
         AgregarDoc.setToolTipText("");
+        AgregarDoc.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         AgregarDoc.setFocusable(false);
         AgregarDoc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -178,6 +190,7 @@ public class Ventana1 extends javax.swing.JFrame {
 
         ListasPuentes.setBackground(new java.awt.Color(0, 153, 204));
         ListasPuentes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/lista8bit.png"))); // NOI18N
+        ListasPuentes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         ListasPuentes.setFocusable(false);
         ListasPuentes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -210,6 +223,25 @@ public class Ventana1 extends javax.swing.JFrame {
         });
         getContentPane().add(guardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 390, -1, -1));
 
+        numeroislas.setBackground(new java.awt.Color(255, 255, 255));
+        numeroislas.setForeground(new java.awt.Color(255, 255, 255));
+        numeroislas.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        numeroislas.setText("Número de Islas: 0");
+        numeroislas.setFocusable(false);
+        getContentPane().add(numeroislas, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 0, 130, 20));
+        numeroislas.getAccessibleContext().setAccessibleDescription("");
+
+        cambioislas.setBackground(new java.awt.Color(0, 0, 255));
+        cambioislas.setText("Actualizar Islas");
+        cambioislas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        cambioislas.setFocusable(false);
+        cambioislas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cambioislasActionPerformed(evt);
+            }
+        });
+        getContentPane().add(cambioislas, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 0, 110, -1));
+
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/persona8bit.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 450));
 
@@ -218,6 +250,7 @@ public class Ventana1 extends javax.swing.JFrame {
 
     private void nextdialogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextdialogoActionPerformed
         pasodialogo += 1;
+        //Cambia el texto de bienvenida
         if (pasodialogo==2) {
            String parte2 = "Como estas?"; 
            dialogo.setText(parte2);
@@ -230,6 +263,7 @@ public class Ventana1 extends javax.swing.JFrame {
             if (rootPaneCheckingEnabled) {
                 
             }
+            //Hace visible las opciones
             dialogo.setText(parte2);
             agregarAmigo.setVisible(true);
             VerGrafo.setVisible(true);
@@ -238,18 +272,23 @@ public class Ventana1 extends javax.swing.JFrame {
             ListasPuentes.setVisible(true); 
             nextdialogo.setVisible(false);
             guardar.setVisible(true);
+            this.cambioislas.setVisible(true);
+            this.numeroislas.setVisible(true);
         }
         
         
     }//GEN-LAST:event_nextdialogoActionPerformed
 
     private void VerGrafoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerGrafoActionPerformed
+        //muestra el grafo
         interGrafo.muestragrafo();
     }//GEN-LAST:event_VerGrafoActionPerformed
 
     private void ListasPuentesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListasPuentesActionPerformed
         miGrafo = extraerGrafo(guardado_automatico);
-        JOptionPane.showMessageDialog(null, miGrafo);
+        //Mostramos los puentes en una alerta
+        JOptionPane.showMessageDialog(null, miGrafo.bridges());
+        miGrafo = extraerGrafo(guardado_automatico);
     }//GEN-LAST:event_ListasPuentesActionPerformed
 
     private void agregarAmigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarAmigoActionPerformed
@@ -276,6 +315,7 @@ public class Ventana1 extends javax.swing.JFrame {
     }//GEN-LAST:event_agregarUsuario1ActionPerformed
 
     private void AgregarDocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarDocActionPerformed
+        //Pide un archivo.txt con los datos especificos para extraer el grafo
         try{
         JFileChooser file=new JFileChooser();
         FileNameExtensionFilter filter = new FileNameExtensionFilter("Archivos de texto", "txt");
@@ -302,6 +342,7 @@ public class Ventana1 extends javax.swing.JFrame {
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, "Error\ninsertar un archivo compatible");
         }
+        //Abilita todas las opciones del menu
             String parte2 = "Sientete libre";
             nextdialogo.setVisible(false);
             dialogo.setText(parte2);
@@ -312,6 +353,8 @@ public class Ventana1 extends javax.swing.JFrame {
             this.agregarUsuario1.setVisible(true);
             this.ListasPuentes.setVisible(true);
             this.guardar.setVisible(true);
+            this.cambioislas.setVisible(true);
+            this.numeroislas.setVisible(true);
         
     }//GEN-LAST:event_AgregarDocActionPerformed
 
@@ -324,12 +367,14 @@ public class Ventana1 extends javax.swing.JFrame {
     }//GEN-LAST:event_eliminarUsuarioMouseExited
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        //Guarda los cambios aparte y cierra el programa por completo
         guardarGrafo(miGrafo, guardado_automatico);
         System.exit(0);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
-       miGrafo = extraerGrafo(guardado_automatico);
+       //Extrae los cambios y los guarda en el archivo.txt seleccionado por el usuario
+        miGrafo = extraerGrafo(guardado_automatico);
        guardarGrafo(miGrafo,guardado_automatico);
         int option = JOptionPane.showOptionDialog(null, "¿Deseas guardar los datos actuales antes de cargar un nuevo archivo?",
             "Advertencia", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE, null,
@@ -348,6 +393,7 @@ public class Ventana1 extends javax.swing.JFrame {
         int result = file.getDialogType();
         if (result == JFileChooser.APPROVE_OPTION) {
             guardarGrafo(miGrafo,abre);
+            JOptionPane.showMessageDialog(null, "Se guardo exitosamente");
         }
         } catch(Exception e){
             JOptionPane.showMessageDialog(null, "Error");
@@ -356,6 +402,11 @@ public class Ventana1 extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Se canselo el guardado");
         }
     }//GEN-LAST:event_guardarActionPerformed
+
+    private void cambioislasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cambioislasActionPerformed
+        //Cambia a opcion del usuario al sistema de busqueda que seleccione el usuario
+        numeroislas.setText(mostrarisla(guardado_automatico));
+    }//GEN-LAST:event_cambioislasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -387,8 +438,7 @@ public class Ventana1 extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Ventana1(true).setVisible(true);
-                
+                new Ventana1(false).setVisible(true);
             }
         });
     }
@@ -399,6 +449,7 @@ public class Ventana1 extends javax.swing.JFrame {
     private javax.swing.JButton VerGrafo;
     private javax.swing.JButton agregarAmigo;
     private javax.swing.JButton agregarUsuario1;
+    private javax.swing.JButton cambioislas;
     private javax.swing.JLabel dialogo;
     private javax.swing.JButton eliminarUsuario;
     private javax.swing.JButton guardar;
@@ -407,5 +458,6 @@ public class Ventana1 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton nextdialogo;
+    private javax.swing.JLabel numeroislas;
     // End of variables declaration//GEN-END:variables
 }

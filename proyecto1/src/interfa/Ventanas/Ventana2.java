@@ -22,6 +22,7 @@ public class Ventana2 extends javax.swing.JFrame {
      * Creates new form Ventana2
      */
     public Ventana2() {
+        //Extraemos el grafo y creamos un id al azar, que no se repita
 //        this.setLocationRelativeTo(null);
     miGrafo = extraerGrafo(guardado_automatico);
         initComponents();
@@ -105,11 +106,6 @@ public class Ventana2 extends javax.swing.JFrame {
         getContentPane().add(dialogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 270, -1, -1));
 
         nombretxt.setBackground(new java.awt.Color(255, 255, 255));
-        nombretxt.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                nombretxtMouseClicked(evt);
-            }
-        });
         nombretxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nombretxtActionPerformed(evt);
@@ -146,6 +142,7 @@ public class Ventana2 extends javax.swing.JFrame {
 
     private void nombretxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombretxtActionPerformed
         miGrafo = extraerGrafo(guardado_automatico);
+        //crea un id al azar sin que se repita
         JOptionPane.showMessageDialog(null, miGrafo);
         int id= (int) (Math.random() * (999 - 100) + 100);
         while ("no encontrado".equals(miGrafo.buscar(id))){
@@ -156,6 +153,8 @@ public class Ventana2 extends javax.swing.JFrame {
     }//GEN-LAST:event_nombretxtActionPerformed
 
     private void limpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_limpiarActionPerformed
+        //crea un id al azar sin que se repita
+        nombretxt.setText("");
         String idU= Integer.toString((int) (Math.random() * (999 - 100) + 100));
         miGrafo = extraerGrafo(guardado_automatico);  
         idcreado.setText(miGrafo.buscar(Integer.parseInt(idU)));
@@ -164,26 +163,19 @@ public class Ventana2 extends javax.swing.JFrame {
         idcreado.setText(miGrafo.buscar(Integer.parseInt(idU)));
         }
         idcreado.setText(idU);
-        
-        
-        
     }//GEN-LAST:event_limpiarActionPerformed
 
-    private void nombretxtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nombretxtMouseClicked
-      
-        
-    }//GEN-LAST:event_nombretxtMouseClicked
-
     private void aceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarActionPerformed
+        //Comprueba los datos puestos
         if (nombretxt.getText()!="") {
         try{
+        miGrafo = extraerGrafo(guardado_automatico);
         Usuario nuevoU = new Usuario(Integer.parseInt(idcreado.getText()), nombretxt.getText());
         JOptionPane.showMessageDialog(null, nuevoU.getId() + "\n" +nuevoU.getNickname());
-        miGrafo = extraerGrafo(guardado_automatico);
+        //Agrega el usuario al grafo y lo guarda
         miGrafo.agregarUsuario(nuevoU);
         guardarGrafo(miGrafo, guardado_automatico);
-        
-        JOptionPane.showMessageDialog(null, nuevoU);
+        //Abre otra ventana
         dispose();
             Ventana2_2 v2_2 = new Ventana2_2();
             v2_2.Ventanatext("Añadir Amigo",nuevoU.getId());

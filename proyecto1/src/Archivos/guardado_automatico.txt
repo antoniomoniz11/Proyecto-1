@@ -1,57 +1,53 @@
 Usuarios
-290, @pepeelgrillo
-378, @pedrito
-121, @Pepe_Gónzales
-254, @StephaniaCominos
-365, @AndreaStanislao
-412, @Josefina_La_Sifrina
-512, @RosaMosa
-231, @EduardoPetardo
-123, @EnriqueManrique
-129, @casanova23
-870, @venepositivo
-758, @yosoylatorre
-578, @pitiypo
-909, @obiwan123
-893, @caribu_sol
-467, @trapos232
-788, @bandido121
-239, @justiciero11
-443, @fuerza_bruta
-999, @Dinatops
-907, @Presentesiempre
-765, @dahkskfusyagiyds
 824, @Zapatero
-151, @pepeelgrillo69
+765, @dahkskfusyagiyds
+907, @Presentesiempre
+999, @Dinatops
+443, @fuerza_bruta
+239, @justiciero11
+788, @bandido121
+467, @trapos232
+893, @caribu_sol
+909, @obiwan123
+578, @pitiypo
+758, @yosoylatorre
+870, @venepositivo
+129, @casanova23
+123, @EnriqueManrique
+231, @EduardoPetardo
+512, @RosaMosa
+412, @Josefina_La_Sifrina
+365, @AndreaStanislao
+254, @StephaniaCominos
+121, @Pepe_Gónzales
+378, @pedrito
+290, @pepeelgrillo
 Relaciones
-290, 999, 876
-378, 999, 645
-121, 999, 78
-254, 909, 5
-254, 893, 1
-365, 758, 9
-365, 578, 4
-412, 512, 2
-412, 893, 4
-412, 788, 7
-512, 129, 10
-231, 123, 1
-231, 870, 5
-123, 870, 15
-123, 467, 6
-123, 999, 10000
-129, 893, 3
-129, 151, 9
-870, 758, 1
-870, 578, 7
-909, 893, 5
-788, 239, 7
-788, 443, 11
-239, 443, 6
-239, 907, 3
-443, 999, 9
-443, 907, 9
-999, 765, 23
-999, 824, 98
-999, 151, 5
-824, 151, 99
+824, 999, 98
+765, 999, 23
+907, 443, 9
+907, 239, 3
+999, 443, 9
+999, 123, 10000
+999, 121, 78
+999, 378, 645
+999, 290, 876
+443, 239, 6
+443, 788, 11
+239, 788, 7
+788, 412, 7
+467, 123, 6
+893, 909, 5
+893, 129, 3
+893, 412, 4
+893, 254, 1
+909, 254, 5
+578, 870, 7
+578, 365, 4
+758, 870, 1
+758, 365, 9
+870, 123, 15
+870, 231, 5
+129, 512, 10
+123, 231, 1
+512, 412, 2

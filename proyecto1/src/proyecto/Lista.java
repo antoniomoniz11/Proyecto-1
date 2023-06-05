@@ -93,13 +93,17 @@ public class Lista<E>
     
     public void eliminar(Nodo<E> nodo){
         Nodo<E> actual = pfirst;
+        try{
         if(size == 1) {pfirst = plast = null;return;}
         if(nodo.equals(actual)) {pfirst = pfirst.getPnext(); return;}
         while(!actual.getPnext().equals(nodo)) actual = actual.getPnext();
         if(nodo.equals(plast)) plast = actual; 
         actual.setPnext(nodo.getPnext());
         size--;
+    }catch(Exception e){
     }
+    
+}
     
    
 }

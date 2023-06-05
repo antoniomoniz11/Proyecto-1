@@ -35,7 +35,7 @@ public class Ventana3 extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         devolver = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        devolveroculto = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         idusuario = new javax.swing.JTextField();
         idamigo = new javax.swing.JTextField();
@@ -46,7 +46,7 @@ public class Ventana3 extends javax.swing.JFrame {
         nombreamigo = new javax.swing.JLabel();
         nombreuser = new javax.swing.JLabel();
         crearamistad = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        Delete = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         añosamistad = new javax.swing.JTextField();
         ver = new javax.swing.JButton();
@@ -69,16 +69,16 @@ public class Ventana3 extends javax.swing.JFrame {
         });
         getContentPane().add(devolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 200, 20, 20));
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/salida.png"))); // NOI18N
-        jButton1.setBorderPainted(false);
-        jButton1.setContentAreaFilled(false);
-        jButton1.setFocusable(false);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        devolveroculto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/salida.png"))); // NOI18N
+        devolveroculto.setBorderPainted(false);
+        devolveroculto.setContentAreaFilled(false);
+        devolveroculto.setFocusable(false);
+        devolveroculto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                devolverocultoActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, -1, -1));
+        getContentPane().add(devolveroculto, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel2.setText("Agregar Amigo");
@@ -154,17 +154,17 @@ public class Ventana3 extends javax.swing.JFrame {
         });
         getContentPane().add(crearamistad, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 260, -1, -1));
 
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/delete8bit.png"))); // NOI18N
-        jButton6.setBorderPainted(false);
-        jButton6.setContentAreaFilled(false);
-        jButton6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton6.setFocusable(false);
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        Delete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/delete8bit.png"))); // NOI18N
+        Delete.setBorderPainted(false);
+        Delete.setContentAreaFilled(false);
+        Delete.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Delete.setFocusable(false);
+        Delete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                DeleteActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 260, -1, -1));
+        getContentPane().add(Delete, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 260, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel5.setText("ID Amigo:");
@@ -176,7 +176,7 @@ public class Ventana3 extends javax.swing.JFrame {
         getContentPane().add(añosamistad, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 210, 35, -1));
 
         ver.setBackground(new java.awt.Color(0, 204, 204));
-        ver.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        ver.setFont(new java.awt.Font("Segoe UI", 0, 8)); // NOI18N
         ver.setForeground(new java.awt.Color(0, 0, 0));
         ver.setText("Ver Usuarios");
         ver.setFocusable(false);
@@ -204,51 +204,58 @@ public class Ventana3 extends javax.swing.JFrame {
         v1.setVisible(true);
     }//GEN-LAST:event_devolverActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void devolverocultoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_devolverocultoActionPerformed
         guardarGrafo(miGrafo, guardado_automatico);
         dispose();
         Ventana1 v1 = new Ventana1(true);
         v1.setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_devolverocultoActionPerformed
 
     private void buscaruserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscaruserActionPerformed
         miGrafo = extraerGrafo(guardado_automatico);
+        //Busca el nombre del usuario con el id
         nombreuser.setText("Nombre: " +miGrafo.buscar(Integer.parseInt(idamigo.getText())));
     }//GEN-LAST:event_buscaruserActionPerformed
 
     private void buscaramigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscaramigoActionPerformed
         miGrafo = extraerGrafo(guardado_automatico);
+        //Busca el nombre del usuario con el id
         nombreamigo.setText("Nombre: " +miGrafo.buscar(Integer.parseInt(idusuario.getText())));
     }//GEN-LAST:event_buscaramigoActionPerformed
 
     private void crearamistadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearamistadActionPerformed
         miGrafo = extraerGrafo(guardado_automatico);
+        //Comprueba datos
         if (idusuario.getText().equals(idamigo.getText())) {
             JOptionPane.showMessageDialog(null, "Error, introduzca datos validos");
         }else{
-        try{            
+        try{
+            //Crea una amistad entre los dos usuarios colocados
         miGrafo.insertarAristaValor(Integer.parseInt(idusuario.getText()), Integer.parseInt(idamigo.getText()), Integer.parseInt(añosamistad.getText()));
         guardarGrafo(miGrafo, guardado_automatico);
-        JOptionPane.showMessageDialog(null, "Amistad creada correctamente");
+        JOptionPane.showMessageDialog(null, "Accion realizada");
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, "Error, introduzca datos validos");
         }
         }
     }//GEN-LAST:event_crearamistadActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    private void DeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteActionPerformed
         miGrafo = extraerGrafo(guardado_automatico);
+        //Comprueba datos
         if (idusuario.getText().equals(idamigo.getText())) {
             JOptionPane.showMessageDialog(null, "Error, introduzca datos validos");
         }else{
-        try{            
-        miGrafo.insertarAristaValor(Integer.parseInt(idusuario.getText()), Integer.parseInt(idamigo.getText()), -20);
-        guardarGrafo(miGrafo, guardado_automatico);
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(null, "Error, introduzca datos validos");
-        }     
+            //Elimina la amistad entre los dos usuarios colocados
+            try{            
+            miGrafo.insertarAristaValor(Integer.parseInt(idusuario.getText()), Integer.parseInt(idamigo.getText()), -20);
+            guardarGrafo(miGrafo, guardado_automatico);
+            JOptionPane.showMessageDialog(null, "Accion realizada");
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(null, "Error, introduzca datos validos");
+            }     
         }
-    }//GEN-LAST:event_jButton6ActionPerformed
+    }//GEN-LAST:event_DeleteActionPerformed
 
     private void idusuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idusuarioActionPerformed
         // TODO add your handling code here:
@@ -260,6 +267,7 @@ public class Ventana3 extends javax.swing.JFrame {
 
     private void verActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verActionPerformed
         miGrafo = extraerGrafo(guardado_automatico);
+        //Muestra los usuarios
         JOptionPane.showMessageDialog(null, miGrafo);
     }//GEN-LAST:event_verActionPerformed
 
@@ -299,15 +307,15 @@ public class Ventana3 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Delete;
     private javax.swing.JTextField añosamistad;
     private javax.swing.JButton buscaramigo;
     private javax.swing.JButton buscaruser;
     private javax.swing.JButton crearamistad;
     private javax.swing.JButton devolver;
+    private javax.swing.JButton devolveroculto;
     private javax.swing.JTextField idamigo;
     private javax.swing.JTextField idusuario;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

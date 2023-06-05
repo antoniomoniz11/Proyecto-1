@@ -17,16 +17,19 @@ import java.util.Arrays;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 /**
  *
  * @author Antonio
  */
 public class Proyecto{
     public static Grafo miGrafo;
+    //Variable general que contiene el grafo
+    
         public static Grafo extraerGrafo(File file){
+            //Toma el file correspondiente
         Grafo res = null;
         Lista<Usuario> verticesList = new Lista();
+        //scanea el file
          try {
             Scanner scanner = new Scanner(file);
             if(scanner.hasNextLine()) scanner.nextLine();
@@ -37,6 +40,7 @@ public class Proyecto{
                     break;
                 }
                 if (!line.equals("")) {
+                //Guardamos los usuarios
                 String[] parts = line.split(", @");
                 for(int i = 0; i < parts.length; i++) parts[i] = parts[i].trim();
                 verticesList.insertarInicio(new Usuario(Integer.parseInt(parts[0]), parts[1]));   
@@ -50,13 +54,13 @@ public class Proyecto{
                 actual = actual.getPnext();
             }
             res = new Grafo(vertices);
-            
+            //Guardamos las relaciones
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
                 String[] parts = line.split(",");
                 for(int i = 0; i < parts.length; i++) parts[i] = parts[i].trim();
                 res.insertarAristaValor(Integer.parseInt(parts[0]), Integer.parseInt(parts[1]), Integer.parseInt(parts[2]));
-                res.insertarAristaValor(Integer.parseInt(parts[1]),Integer.parseInt(parts[0]),  Integer.parseInt(parts[2]));
+                
             }
             
             scanner.close();            
@@ -69,34 +73,27 @@ public class Proyecto{
     }
     
     public static void guardarGrafo(Grafo grafo, File ruta){
+        //Toma el grafo y el file donde se guardara
         try{
         FileWriter fileWriter = new FileWriter(ruta);
         PrintWriter printWriter = new PrintWriter(fileWriter);
         
         printWriter.println("Usuarios");
         Usuario[] usuarios = grafo.getUsuarios();
-            
+        //Toma los usuarios y los escribe en el archivo
         for(Usuario usuario : usuarios){
-            
             try{
                 printWriter.println(usuario.getId()+", @"+ usuario.getNickname());
-                
             }catch (Exception e){
-                System.out.println(usuario);//revisar
             }
-            
-            
-            
         }
         printWriter.println("Relaciones");
         Arista[] aristas = grafo.getAristas();
+        //Toma las aristas y los escribe en el archivo
         for(Arista arista : aristas){
             try{
             printWriter.println(usuarios[arista.getOrigen()].getId()+", "+ usuarios[arista.getDestino()].getId() +", "+ arista.getPeso());
-                
             }catch (Exception e){
-                System.out.println(arista);//ver
-                
                 }
         }
         
@@ -106,43 +103,28 @@ public class Proyecto{
     }
     }
     
-    public static void main(String[] args){
-        File guardado_automatico = new File("src\\Archivos\\guardado_automatico.txt");
-        JFileChooser file=new JFileChooser();
-        FileNameExtensionFilter filter = new FileNameExtensionFilter("Archivos de texto", "txt");
-        file.setFileFilter(filter);
-        file.showOpenDialog(file);
-        File abre=file.getSelectedFile();
-        int result = file.getDialogType();
-        if (result == JFileChooser.APPROVE_OPTION) {
-        miGrafo = extraerGrafo(abre);
-        guardarGrafo(miGrafo,guardado_automatico);
-        }else{
-             JOptionPane.showMessageDialog(null, "La carga de archivo se ha cancelado");
+    public static String mostrarisla(File file){
+        extraerGrafo(file);
+        String resultado = "";
+        String[] opciones = {"DFS", "BFS", "Cancelar"};
+        int selec = JOptionPane.showOptionDialog(null, "Seleccione un método para hacer el recorrido",
+                    "Mostrar Número de Islas", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null,
+                    opciones, opciones[0]);
+        
+        switch (selec){
+            case 0:
+                miGrafo.setDFS();
+                resultado = "Número de Islas: " + miGrafo.numIslas();
+                break;
+            case 1:
+                miGrafo.setBFS();
+                resultado = "Número de Islas: " + miGrafo.numIslas();
+                break;
+            case 2:
+                break;
+            default:
+                break;
         }
-            int option = JOptionPane.showOptionDialog(null, "¿Deseas guardar los datos actuales antes de cargar un nuevo archivo?",
-                    "Advertencia", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE, null,
-                    new Object[]{"Guardar", "Descartar", "Cancelar"}, "Guardar");
-            if (option == JOptionPane.YES_OPTION) {
-                try {
-                    miGrafo = extraerGrafo(guardado_automatico);
-                    guardarGrafo(miGrafo,abre);
-                    JOptionPane.showMessageDialog(null, "Archivo cargado exitosamente.");
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    JOptionPane.showMessageDialog(null, "Error al guardar el archivo");
-                }
-            } else if (option == JOptionPane.NO_OPTION) {
-                
-            } else if (option == JOptionPane.CANCEL_OPTION) {
-                JOptionPane.showMessageDialog(null, "La carga de archivo se ha cancelado");
-                System.exit(0);
-            }
-        }
-    
-    
+                return resultado;
+    }    
 }
-    
-    
-
-

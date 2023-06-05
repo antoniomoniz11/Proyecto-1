@@ -23,6 +23,7 @@ public class Ventana2_2 extends javax.swing.JFrame {
         initComponents();
     }
     public void Ventanatext(String texto, int num){
+        //Extrae el texto enviado en otra ventana
         miGrafo = extraerGrafo(guardado_automatico);
         hacer.setText(texto);
         pestana =num;
@@ -138,7 +139,7 @@ public class Ventana2_2 extends javax.swing.JFrame {
         getContentPane().add(idtexto, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 60, 60, -1));
 
         ver.setBackground(new java.awt.Color(0, 204, 204));
-        ver.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        ver.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
         ver.setForeground(new java.awt.Color(0, 0, 0));
         ver.setText("Ver Usuarios");
         ver.setFocusable(false);
@@ -162,19 +163,19 @@ public class Ventana2_2 extends javax.swing.JFrame {
     }//GEN-LAST:event_limpiarActionPerformed
 
     private void aceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarActionPerformed
-
         miGrafo = extraerGrafo(guardado_automatico);
+        //Comprueba que accion esta haciendo
         try{
             if (pestana==1) {
+                //Elimina el usuario indicado
                 JOptionPane.showMessageDialog(null, idtexto.getText());
-                JOptionPane.showMessageDialog(null, Integer.parseInt(idtexto.getText()));
                 miGrafo.eliminarUsuario(Integer.parseInt(idtexto.getText()));
                 guardarGrafo(miGrafo, guardado_automatico);
                 JOptionPane.showMessageDialog(null, "Se elimino Exitosamente");
             }else{
+                //Agega un amigo al usuario anteriormente creado
                 Ventana2 v2 = new Ventana2();
                 int peso = Integer.parseInt(JOptionPane.showInputDialog("Cuantos años lleva su amistad?:\n"));
-                JOptionPane.showMessageDialog(null, pestana);
                 miGrafo.insertarAristaValor(pestana, Integer.parseInt(idtexto.getText()), peso);
                 guardarGrafo(miGrafo, guardado_automatico);
                 JOptionPane.showMessageDialog(null, "Se agrego el usuario correctamente");
@@ -189,6 +190,7 @@ public class Ventana2_2 extends javax.swing.JFrame {
 
     private void searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchActionPerformed
         miGrafo = extraerGrafo(guardado_automatico);
+        //Busca el nombre del usuario con la id correspondiente
         try{
         nombreamigo.setText(miGrafo.buscar(Integer.parseInt(idtexto.getText())));
         }catch (Exception e){
@@ -211,6 +213,7 @@ public class Ventana2_2 extends javax.swing.JFrame {
 
     private void verActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verActionPerformed
         miGrafo = extraerGrafo(guardado_automatico);
+        //Muestra los usuarios con sus amistades
         JOptionPane.showMessageDialog(null, miGrafo);
     }//GEN-LAST:event_verActionPerformed
 
